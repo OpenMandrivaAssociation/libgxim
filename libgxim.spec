@@ -4,7 +4,7 @@
 
 Name:		libgxim
 Version:	0.3.3
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	LGPLv2+
 URL:		http://code.google.com/p/libgxim/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
