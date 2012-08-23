@@ -97,7 +97,6 @@ rm -rf %{buildroot}
 %defattr(-, root, root, -)
 %doc AUTHORS COPYING ChangeLog README
 %{_libdir}/libgxim.so
-%{_libdir}/libgxim.la
 %{_libdir}/pkgconfig/*.pc
 %{_includedir}/libgxim
 %{_datadir}/gtk-doc/html/libgxim
