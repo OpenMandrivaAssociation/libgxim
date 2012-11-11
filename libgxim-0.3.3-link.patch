@@ -1,0 +1,40 @@
+--- libgxim/Makefile.am.link	2011-03-25 09:25:00.000000000 +0100
++++ libgxim/Makefile.am	2011-03-25 09:25:22.000000000 +0100
+@@ -7,6 +7,7 @@
+ LIBS =								\
+ 	@LDFLAGS@						\
+ 	$(GXIM_LIBS)						\
++	-lX11							\
+ 	$(NULL)
+ EXTRA_DIST =							\
+ 	marshal.list						\
+--- tests/Makefile.am.link	2011-03-25 09:26:07.000000000 +0100
++++ tests/Makefile.am	2011-03-25 09:26:53.000000000 +0100
+@@ -13,6 +13,7 @@
+ 	@LDFLAGS@				\
+ 	$(top_builddir)/libgxim/libgxim.la	\
+ 	$(CHECK_LIBS)				\
++	$(GXIM_LIBS)				\
+ 	$(NULL)
+ EXTRA_DIST =					\
+ 	$(NULL)
+--- libgxim/Makefile.in.link	2011-03-25 09:31:29.000000000 +0100
++++ libgxim/Makefile.in	2011-03-25 09:31:58.000000000 +0100
+@@ -172,6 +172,7 @@
+ LIBS = \
+ 	@LDFLAGS@						\
+ 	$(GXIM_LIBS)						\
++	-lX11							\
+ 	$(NULL)
+ 
+ LIBTOOL = @LIBTOOL@
+--- tests/Makefile.in.link	2011-03-25 09:32:10.000000000 +0100
++++ tests/Makefile.in	2011-03-25 09:32:46.000000000 +0100
+@@ -175,6 +175,7 @@
+ 	@LDFLAGS@				\
+ 	$(top_builddir)/libgxim/libgxim.la	\
+ 	$(CHECK_LIBS)				\
++	$(GXIM_LIBS)				\
+ 	$(NULL)
+ 
+ LIBTOOL = @LIBTOOL@
