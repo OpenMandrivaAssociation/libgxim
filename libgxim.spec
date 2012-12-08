@@ -4,7 +4,7 @@
 
 Name:		libgxim
 Version:	0.3.3
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	LGPLv2+
 URL:		http://code.google.com/p/libgxim/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
@@ -77,13 +77,13 @@ libgxim.
 %make
 
 %install
-rm -rf %{buildroot}
+rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
 
 %find_lang %{name}
 
 %clean
-rm -rf %{buildroot}
+rm -rf $RPM_BUILD_ROOT
 
 %files i18n -f %{name}.lang
 %defattr(-, root, root, -)
@@ -100,3 +100,14 @@ rm -rf %{buildroot}
 %{_libdir}/pkgconfig/*.pc
 %{_includedir}/libgxim
 %{_datadir}/gtk-doc/html/libgxim
+
+
+%changelog
+* Mon May 02 2011 Oden Eriksson <oeriksson@mandriva.com> 0.3.3-2mdv2011.0
++ Revision: 662376
+- mass rebuild
+
+* Fri Mar 25 2011 Funda Wang <fwang@mandriva.org> 0.3.3-1
++ Revision: 648477
+- import libgxim
+
