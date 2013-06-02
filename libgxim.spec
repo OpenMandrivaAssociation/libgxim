@@ -1,24 +1,26 @@
-%define major 2
+%define major	2
 %define libname %mklibname gxim %major
-%define develname %mklibname -d gxim
+%define devname %mklibname -d gxim
 
+Summary:	GObject-based XIM protocol library
 Name:		libgxim
 Version:	0.3.3
-Release:	%mkrel 3
+Release:	3
 License:	LGPLv2+
-URL:		http://code.google.com/p/libgxim/
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires:	intltool gettext ruby
-BuildRequires:	dbus-devel > 0.23
-BuildRequires:	dbus-glib-devel >= 0.74
-BuildRequires:	glib2-devel >= 2.16
-BuildRequires:	gtk2-devel
+Group:		System/Libraries
+Url:		http://code.google.com/p/libgxim/
 Source0:	http://libgxim.googlecode.com/files/%{name}-%{version}.tar.bz2
 Patch0:		libgxim-fix-fontset.patch
 Patch1:		libgxim-0.3.3-link.patch
 Patch2:		libgxim-0.3.3-str-fmt.patch
-Summary:	GObject-based XIM protocol library
-Group:		System/Libraries
+
+BuildRequires:	intltool
+BuildRequires:	gettext
+BuildRequires:	ruby
+BuildRequires:	pkgconfig(dbus-1)
+BuildRequires:	pkgconfig(dbus-glib-1)
+BuildRequires:	pkgconfig(glib-2.0)
+BuildRequires:	pkgconfig(gtk+-2.0)
 
 %description
 libgxim is a X Input Method protocol library that is implemented by GObject.
@@ -31,17 +33,12 @@ Summary:	Translation files for libgxim
 Group:		System/Internationalization
 
 %description	i18n
-libgxim is a X Input Method protocol library that is implemented by GObject.
-this library helps you to implement XIM servers or client applications to
-communicate through XIM protocol without using Xlib API directly, particularly
-if your application uses GObject-based main loop.
-
-This package contains the translation files.
+This package contains the translation files for %{name}.
 
 %package -n	%libname
 Summary:	Shared library for libgxim
 Group:		System/Libraries
-Requires:	%{name}-i18n = %version
+Requires:	%{name}-i18n = %{version}-%{release}
 
 %description -n	%libname
 libgxim is a X Input Method protocol library that is implemented by GObject.
@@ -51,18 +48,13 @@ if your application uses GObject-based main loop.
 
 This package contains the shared library.
 
-%package -n	%develname
+%package -n	%{devname}
 Summary:	Development files for libgxim
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	gxim-devel = %{version}-%{release}
 
-%description -n	%develname
-libgxim is a X Input Method protocol library that is implemented by GObject.
-this library helps you to implement XIM servers or client applications to
-communicate through XIM protocol without using Xlib API directly, particularly
-if your application uses GObject-based main loop.
-
+%description -n	%{devname}
 This package contains the development files to make any applications with
 libgxim.
 
@@ -73,41 +65,25 @@ libgxim.
 %patch2 -p0 -b .str
 
 %build
-%configure2_5x --disable-static --disable-rebuilds
+%configure2_5x \
+	--disable-static \
+	--disable-rebuilds
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
 
 %find_lang %{name}
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files i18n -f %{name}.lang
-%defattr(-, root, root, -)
 
 %files -n %{libname}
-%defattr(-, root, root, -)
-%{_libdir}/libgxim.so.%{major}
-%{_libdir}/libgxim.so.%{major}.*
+%{_libdir}/libgxim.so.%{major}*
 
-%files -n %{develname}
-%defattr(-, root, root, -)
+%files -n %{devname}
 %doc AUTHORS COPYING ChangeLog README
+%doc %{_datadir}/gtk-doc/html/libgxim
 %{_libdir}/libgxim.so
 %{_libdir}/pkgconfig/*.pc
 %{_includedir}/libgxim
-%{_datadir}/gtk-doc/html/libgxim
-
-
-%changelog
-* Mon May 02 2011 Oden Eriksson <oeriksson@mandriva.com> 0.3.3-2mdv2011.0
-+ Revision: 662376
-- mass rebuild
-
-* Fri Mar 25 2011 Funda Wang <fwang@mandriva.org> 0.3.3-1
-+ Revision: 648477
-- import libgxim
 
