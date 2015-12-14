@@ -2,6 +2,9 @@
 %define libname %mklibname gxim %major
 %define devname %mklibname -d gxim
 
+%define _disable_rebuild_configure 1
+%define _disable_lto 1
+
 Summary:	GObject-based XIM protocol library
 Name:		libgxim
 Version:	0.3.3
