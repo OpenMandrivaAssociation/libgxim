@@ -19,7 +19,7 @@ Patch2:		libgxim-0.3.3-str-fmt.patch
 
 BuildRequires:	intltool
 BuildRequires:	gettext
-BuildRequires:	ruby
+BuildRequires:	ruby(rubygems)
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(glib-2.0)
@@ -68,13 +68,14 @@ libgxim.
 %patch2 -p0 -b .str
 
 %build
-%configure2_5x \
+%configure \
 	--disable-static \
 	--disable-rebuilds
-%make
+
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 %find_lang %{name}
 
