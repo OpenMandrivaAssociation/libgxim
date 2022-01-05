@@ -1,4 +1,4 @@
-%define major	2
+%define major	4
 %define libname %mklibname gxim %major
 %define devname %mklibname -d gxim
 
@@ -7,19 +7,19 @@
 
 Summary:	GObject-based XIM protocol library
 Name:		libgxim
-Version:	0.3.3
+Version:	0.5.0
 Release:	14
 License:	LGPLv2+
 Group:		System/Libraries
-Url:		http://code.google.com/p/libgxim/
-Source0:	http://libgxim.googlecode.com/files/%{name}-%{version}.tar.bz2
-Patch0:		libgxim-fix-fontset.patch
-Patch1:		libgxim-0.3.3-link.patch
+Url:		https://bitbucket.org/tagoh/libgxim/wiki/Home
+Source0:	https://bitbucket.org/tagoh/libgxim/downloads/%{name}-%{version}.tar.bz2
+#Patch0:		libgxim-fix-fontset.patch
+#Patch1:		libgxim-0.3.3-link.patch
 Patch2:		libgxim-0.3.3-str-fmt.patch
 
 BuildRequires:	intltool
 BuildRequires:	gettext
-BuildRequires:	ruby(rubygems)
+#BuildRequires:	ruby(rubygems)
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(glib-2.0)
@@ -62,10 +62,7 @@ This package contains the development files to make any applications with
 libgxim.
 
 %prep
-%setup -q
-%patch0 -p0 -b .0-fontset
-%patch1 -p0 -b .link
-%patch2 -p0 -b .str
+%autosetup -p1
 
 %build
 %configure \
