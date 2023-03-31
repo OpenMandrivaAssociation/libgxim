@@ -8,7 +8,7 @@
 Summary:	GObject-based XIM protocol library
 Name:		libgxim
 Version:	0.5.0
-Release:	14
+Release:	15
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		https://bitbucket.org/tagoh/libgxim/wiki/Home
